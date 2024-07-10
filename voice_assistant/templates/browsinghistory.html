@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat History Box</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: black;
+        }
+        #history-container {
+            width: 800px;
+            height: 670px;
+            margin: 0 auto;
+            background-color: #262525;
+            padding: 20px;
+            border: 1px solid #FFFE40;
+            overflow-y: hidden;
+
+        }
+        #history-box {
+            height: 570px;
+            overflow-y: auto;
+            padding: 10px;
+        }
+        .history-item {
+            display: inline-block;
+            position: relative;
+            padding: 10px;
+            background-color: black;
+            color: #e3dede;
+            border-radius: 8px;
+            word-wrap: break-word;
+            margin-bottom: 20px;
+        }
+        .ai-response {
+            justify-content: flex-end;
+            align-items: flex-end;
+            clear: both;
+            float: left;
+            text-align: left;
+            border-radius: 10px 10px 10px 0px;
+        }
+        .user-message {
+            justify-content: flex-end;
+            align-items: flex-end;
+            clear: both;
+            float: right;
+            text-align: right;
+            border-radius: 10px 10px 0px 10px;
+        }
+        #history-box pre{
+            text-align: left;
+            font-size: 14px;
+            margin-bottom: -3px;
+        }
+        ::-webkit-scrollbar {
+            width: 0;
+        }
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #262525; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #262525; 
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #262525; 
+        }
+        .closebtn{
+            top: 00px;
+            font-size: 40px;
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <a href="home.html" class="closebtn">&#xd7;</a>
+    <div id="history-container">
+        <h2 style="color: #FFFE40;">Chat History</h2>
+        <div id="history-box">
+            <div class="history-item ai-response">
+                <pre>
+Hi, how can I assist you?
+                </pre>
+            </div>
+            <div class="history-item user-message">
+                <pre>
+What's the weather like today?
+                </pre>
+            </div>
+            <div class="history-item ai-response">
+                <pre>
+The weather is sunny and warm.
+                </pre>
+            </div>
+            <div class="history-item user-message">
+                <pre>
+javascript:void(0)
+what is this href in html 
+                </pre>
+            </div>
+            <div class="history-item ai-response">
+                <pre>
+The `javascript:void(0)` in the `href` attribute of an HTML anchor (`<a>`) element 
+is a common technique used to create a clickable link that doesn't navigate to a 
+new page or reload the current page.When you set the `href` attribute to 
+`javascript:void(0)`, it essentially means that when the link is clicked, 
+the browser will execute the JavaScript code `void(0)`. The `void` operator
+evaluates the expression inside it and always returns `undefined`.
+So, `void(0)` is a simple way to create a link that doesn't have
+any effect when clicked. Here's an example of how it might be used in HTML
+```html
+<&a href="javascript:void(0)" onclick="myFunction()">Click me</&a>
+```                        
+In this example, clicking the link will trigger the `myFunction` 
+JavaScript function, but the `javascript:void(0)` prevents 
+the browser from navigating to a new page or changing the current page's URL. 
+It's often used in scenarios where you want to execute JavaScript code 
+in response to a user click without triggering a page navigation.
+                </pre>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

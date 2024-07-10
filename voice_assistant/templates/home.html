@@ -1,0 +1,526 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Assistant</title>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .gradient-background {
+            background: linear-gradient(271deg,#1D2671,black,#1D2671);
+            background-size: 180% 180%;
+            animation: gradient-animation 18s ease infinite;
+        }
+
+        @keyframes gradient-animation {
+            0% {
+            background-position: 0% 50%;
+            }
+            50% {
+            background-position: 100% 50%;
+            }
+            100% {
+            background-position: 0% 50%;
+            }
+        }
+        .container {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 55vh;
+            z-index: 999;
+            left: 11%;
+            top: 150px;
+        }
+        body {
+            background-color: black;
+            color: antiquewhite;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        
+        /*topbar*/
+        .assistant-heading {
+          font-size: 22px;
+          margin-left: 5px; 
+        }
+        
+        .top-bar {
+          background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,0));
+          border-bottom: 1px solid rgba(255,255,255,.18);
+          backdrop-filter: blur(40px);
+          -webkit-backdrop-filter: blur(40px);
+          box-shadow: 0 4px 32px 0 rgba(0,0,0,.1);
+          color: white;
+          padding: 10px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .assistant-info {
+          display: flex;
+          align-items: center;
+        }
+        .user-info {
+          display: flex;
+          align-items: center;
+        }
+        
+        .user-avatar {
+          width: 40px; 
+          height: 40px; 
+          border-radius: 50%; 
+          margin-right: 10px;
+        }
+        #power-button {
+          cursor: pointer;
+          font-size: 24px; 
+        }
+        
+        #username {
+          margin-right: 150px; 
+          font-size: large;
+        }
+        .date-time {
+          font-size: 12px;
+        }
+        
+        /*Middle Robot*/
+        
+        .robot {
+            position: relative;
+            cursor: pointer;
+            left: 49%;
+            z-index: 999;
+        }
+        
+        #robot-image {
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            overflow: hidden;
+            object-fit: cover;
+        }
+        
+        .listening-indicator {
+            display: none;
+            position: absolute;
+            bottom: 40px; 
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px; 
+            height: 40px;
+            border-radius: 20px; 
+            background-color: black;
+            animation: wave 2s ease-in-out infinite;
+        }
+        
+        .listening-indicator span {
+            display: block;
+            float: left;
+            width: 140px; 
+            height: 100%;
+            background-color: black;
+            animation: wave-child 2s ease-in-out infinite;
+        }
+        
+        
+        .spinner {
+            background-image: linear-gradient(rgb(186, 66, 255) 35%,rgb(0, 225, 255));
+            width: 400px;
+            height: 400px;
+            animation: spinning82341 1.7s linear infinite;
+            border-radius: 250px;
+            filter: blur(1px);
+            box-shadow: 0px -5px 20px 0px rgb(186, 66, 255), 0px 5px 20px 0px rgb(0, 225, 255);
+        }
+        
+        .spinner1 {
+            background-color: rgb(36, 36, 36);
+            width: 400px;
+            height: 400px;
+            border-radius: 250px;
+            filter: blur(10px);
+        }
+        
+        @keyframes spinning82341 {
+          to {
+              transform: rotate(360deg);
+          }
+        }
+        
+        #instructions {
+            position: absolute;
+            bottom: 120px;
+            text-align: center;
+            margin-top: 20px;
+            color: antiquewhite;
+            width: 100%;
+        }
+        
+        #historyButton {
+            margin-top: 240px;
+            left: 10px;
+            font-size: 50px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            color: white;
+        }
+        
+        /*side bar interface*/
+        
+          .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 00px;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+          }
+          
+          .sidebar a {
+            padding: 7px 7px 7px 32px;
+            text-decoration: none;
+            font-size: 20px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+          }
+          
+          .sidebar a:hover {
+            color: #f1f1f1;
+          }
+          
+          .sidebar .closebtn {
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+          }
+          
+          .openbtn {
+            font-size: 20px;
+            cursor: pointer;
+            background-color: #111;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            top:100px;
+          }
+          
+          .openbtn:hover {
+            background-color: #444;
+          }
+          
+          #main {
+            transition: margin-left .5s;
+            padding: 16px;
+            margin-top:250px;
+          }
+          /* M E S S A G E S */
+
+.chat {
+    list-style: none;
+    background: none;
+    padding: 0 0 50px 0;
+    margin-top: -280px;
+    margin-left: -60px;
+    overflow-y: auto;
+    height: 600px; 
+}
+
+.chat li {
+    padding: 0.5rem;
+    overflow: hidden;
+    display: flex;
+}
+
+.other .msg {
+    border-top-left-radius: 0px;
+    margin-left:100px;
+    border: 2px solid #1F45FC;
+}
+.other:before {
+    content: "";
+    position: relative;
+    top: 0px;
+    right: 0px;
+    left: 100px;
+    width: 0px;
+    height: 0px;
+    border: 3.5px solid #1F45FC; 
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+}
+
+.self {
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-right:20px;
+}
+.self .msg {
+    border-bottom-right-radius: 0px;
+}
+.self:after {
+    content: "";
+    position: relative;
+    display: inline-block;
+    bottom: 0px;
+    right: 0px;
+    width: 0px;
+    height: 0px;
+    border: 3.5px solid #1F45FC;
+    border-right-color: transparent;
+    border-top-color: transparent;
+}
+
+.msg {
+    background: #000000;
+    min-width: 50px;
+    padding: 10px;
+    border-radius: 2px;
+    word-break: break-all;
+    border: 2px solid #1F45FC;
+    
+}
+.msg .user {
+    margin-top: -2px;
+    margin-bottom: 5px;
+}
+.msg .user .range.admin {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 300;
+    color: #ea7d6a;
+    padding: 2px;
+    border-radius: 5px;
+    border: solid 1px #ea7d6a;
+    background: rgba(255,255,255,0);
+    margin-left: -1px;
+}
+.msg p {
+    font-size: 13px;
+    margin: 0 0 2px 0;
+    color: #ffffff;
+    transition: all .2s ease;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+}
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: black; 
+}
+::-webkit-scrollbar-thumb {
+    background: black; 
+}
+::-webkit-scrollbar-thumb:hover {
+    background: black; 
+}
+    </style>
+</head>
+<body class="gradient-background">
+
+    <div class="top-bar">
+        <div class="assistant-info">
+            <i class="fa-solid fa-power-off" id="power-button" onclick="exitAssistant()"></i>
+            <div class="assistant-heading">Personal Voice Assistant</div>
+        </div>
+        <div id="username" class="user-info">
+            <h3 id="user"></h3>
+        </div>
+        <p class="date-time" id="date-time1"></p>
+    </div>
+
+    <div class="side">
+        <button id="historyButton" onclick="openNav()">&#x203A;</button>
+    </div>
+
+    <div class="container">
+        <div class="robot">
+            <img id="robot-image" src="{% static 'Robo_off.png' %}" onclick="loadAnotherImage()">
+            <div class="listening-indicator" id="listening-indicator">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="spinner">
+            <div class="spinner1"></div>
+        </div>
+    </div>
+
+    <ol class="chat">
+        <li class="other">
+            <div class="msg">
+                <div class="user"><span class="range admin">Chatbot</span></div>
+                <p>Dude 1st </p>
+            </div>
+        </li>
+        <li class="self">
+            <div class="msg">
+                <div class="user"><span class="range admin">User</span></div>
+                <p>Puff...</p>
+                <p>I'm still doing the Góngora comment...</p>
+                <p>Better other day</p>
+            </div>
+        </li>
+        <li class="other">
+            <div class="msg">
+                <div class="user"><span class="range admin">Chatbot</span></div>
+                <p>Dude 2nd</p>
+            </div>
+        </li>
+        <li class="self">
+            <div class="msg">
+                <div class="user"><span class="range admin">User</span></div>
+                <p>Puff...</p>
+                <p>I'm still doing the Góngora comment...</p>
+                <p>Better other day</p>
+            </div>
+        </li>
+        <li class="other">
+            <div class="msg">
+                <div class="user"><span class="range admin">Chatbot</span></div>
+                <p>Dudem 3rd</p>
+            </div>
+        </li>
+        <li class="self">
+            <div class="msg">
+                <div class="user"><span class="range admin">User</span></div>
+                <p>Puff...</p>
+                <p>I'm still doing the Góngora comment...</p>
+                <p>Better other day</p>
+            </div>
+        </li>
+        <li class="other">
+            <div class="msg">
+                <div class="user"><span class="range admin">Chatbot</span></div>
+                <p>Dude</p>
+            </div>
+        </li>
+        <li class="self">
+            <div class="msg">
+                <div class="user"><span class="range admin">User</span></div>
+                <p>Puff...</p>
+                <p>I'm still doing the Góngora comment...</p>
+                <p>Better other day</p>
+            </div>
+        </li>        
+        <li class="other">
+            <div class="msg">
+                <div class="user"><span class="range admin">Chatbot</span></div>
+                <p>Dude</p>
+            </div>
+        </li>
+        <li class="self">
+            <div class="msg">
+                <div class="user"><span class="range admin">User</span></div>
+                <p>Puff...</p>
+                <p>I'm still doing the Góngora comment...</p>
+                <p>Better other day</p>
+            </div>
+        </li>
+        
+        <li class="other">
+            <div class="msg">
+                <div class="user"><span class="range admin">Chatbot</span></div>
+                <p>Dudeqwertt</p>
+            </div>
+        </li>
+        <li class="self">
+            <div class="msg">
+                <div class="user"><span class="range admin">User</span></div>
+                <p>LAST</p>
+                <p>I'm still doing the Góngora comment...</p>
+                <p>Better other day</p>
+            </div>
+        </li>
+    </ol>
+
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&#x2039;</a>
+        <a href="browsinghistory.html">Browsing History</a>
+        <a href="services.html">Services</a>
+        <a href="aboutus.html">Contact</a>
+    
+    </div>
+
+    <script>
+        {% comment %} const imageElement = document.getElementById('robot-image');
+        const imageList = [
+            "Robo_off.png ",
+            "Robo_onn.png", ];
+        let currentImageIndex = 0;
+        function loadAnotherImage() {
+            currentImageIndex = (currentImageIndex + 1) % imageList.length;
+            imageElement.src = imageList[currentImageIndex];
+        } {% endcomment %}
+        const imageElement = document.getElementById('robot-image');
+        const imageList = [
+            "{% static 'Robo_off.png' %}",
+            "{% static 'Robo_onn.png' %}",
+        ];
+        let currentImageIndex = 0;
+
+        function loadAnotherImage() {
+            currentImageIndex = (currentImageIndex + 1) % imageList.length;
+            imageElement.src = imageList[currentImageIndex];
+        }
+
+function exitAssistant() {
+    window.location.href = 'login.html';
+}
+
+function updateTime1() {
+    const dateTimeElement = document.getElementById('date-time1');
+    const now = new Date();
+    const options = { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };
+    const formattedDateTime = now.toLocaleDateString('en-US', options);
+    dateTimeElement.textContent = formattedDateTime;
+    
+}
+
+updateTime1();
+setInterval(updateTime1, 1000);
+
+function openNav() {
+    document.getElementById("mySidebar").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+    document.getElementById("mySidebar").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+}
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    var loggedInUsername = localStorage.getItem("loggedInUsername");
+
+    if (loggedInUsername) {
+        var welcomeHeading = document.getElementById("user");
+        welcomeHeading.textContent = loggedInUsername;
+    }
+    else {
+    window.location.href = 'login.html';
+}
+});
+    </script>
+</body>
+</html>

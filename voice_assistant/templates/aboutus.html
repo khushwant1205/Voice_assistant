@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Personal Voice Assistant</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Oswald', sans-serif;
+        }
+
+        body {
+            background: #000;
+            color: #fff;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .about-us {
+            height: 50vh;
+            width: 100%;
+            padding: 90px 0;
+            background: #000;
+        }
+
+        .about {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .text {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .text h2 {
+            font-size: 48px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .text h5 {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .text p {
+            font-size: 22px;
+            line-height: 1.5;
+            letter-spacing: 0.5px;
+        }
+
+        .portrait-frames {
+            display: flex;
+            justify-content: space-around;
+            margin-top: -50px;
+            flex-wrap: wrap;
+        }
+
+        .portrait-frame {
+            height: 300px;
+            width: 200px;
+            margin: 10px;
+            overflow: hidden;
+            position: relative;
+            border: 2px solid #fff;
+            border-radius: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .portrait-frame:hover {
+            transform: scale(1.05);
+        }
+
+        .portrait-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .portrait-name {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 8px;
+            text-align: center;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .portrait-frame:hover .portrait-name {
+            opacity: 1;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .portrait-frame:hover .overlay {
+            opacity: 1;
+        }
+        .closebtn{
+            top: 80px;
+            font-size: 60px;
+            color: white;
+            text-decoration: none;
+        }
+        
+        ::-webkit-scrollbar {
+            width: 0;
+        }
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: black; 
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: black; 
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: black; 
+        }
+    </style>
+</head>
+
+<body>
+    <a href="home.html" class="closebtn">&#xd7;</a>
+    <div class="portrait-frames">
+        <div class="portrait-frame">
+            <div class="overlay"></div>
+            <img src="https://images.indianexpress.com/2018/04/avengers-captain-america.jpg?w=350" alt="Portrait 1" class="portrait-img">
+            <div class="portrait-name">Ayush Moningi</div>
+        </div>
+        <div class="portrait-frame">
+            <div class="overlay"></div>
+            <img src="https://cdn.openart.ai/stable_diffusion/a11248afdbcd81ce3475e801791675a9bbd0da84_2000x2000.webp" alt="Portrait 2" class="portrait-img">
+            <div class="portrait-name">Sanjit Teja T</div>
+        </div>
+        <div class="portrait-frame">
+            <div class="overlay"></div>
+            <img src="https://generations.krea.ai/images/7c2afe0b-e064-4e74-b11f-6f9b6fcf2705.webp" alt="Portrait 4" class="portrait-img">
+            <div class="portrait-name">Mahesh D</div>
+        </div>
+        <div class="portrait-frame">
+            <div class="overlay"></div>
+            <img src="https://i.pinimg.com/736x/09/62/a4/0962a412cd5df4bf2e0c9b2852ea948f.jpg" alt="Portrait 3" class="portrait-img">
+            <div class="portrait-name">Khushwant P</div>
+        </div>
+    </div>
+
+    <section class="about-us">
+        <div class="about">
+            <div class="text">
+                <h2>About Us</h2>
+                <h5>Personal Voice Assistant</h5>
+                <p>A hard-working and dedicated team is the backbone of any successful endeavor. Such a team embodies the essence of commitment, perseverance, and a shared passion for achieving common goals. Members of such a team invest their time, energy, and skills wholeheartedly into their work, consistently going above and beyond expectations. Their dedication is evident in their willingness to put in the extra effort, overcome challenges, and stay focused on the collective objectives. The synergy within a hard-working and dedicated team fosters a culture of mutual support and collaboration, creating an environment where each member's strengths complement those of others. Ultimately, it is this unwavering commitment and collaborative spirit that drive the team to reach new heights and accomplish feats that may seem insurmountable to others.</p>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

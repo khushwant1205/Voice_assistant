@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Assistant</title>
+    <link rel="stylesheet" href="main_ui_style.css">
+    <link rel="stylesheet" href="chatstyle.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .gradient-background {
+            background: linear-gradient(271deg,#1D2671,black,#1D2671);
+            background-size: 180% 180%;
+            animation: gradient-animation 18s ease infinite;
+        }
+
+        @keyframes gradient-animation {
+            0% {
+            background-position: 0% 50%;
+            }
+            50% {
+            background-position: 100% 50%;
+            }
+            100% {
+            background-position: 0% 50%;
+            }
+        }
+    </style>
+</head>
+<body class="gradient-background">
+
+    <div class="top-bar">
+        <div class="assistant-info">
+            <i class="fa-solid fa-power-off" id="power-button" onclick="exitAssistant()"></i>
+            <div class="assistant-heading">Personal Voice Assistant</div>
+        </div>
+        <div id="username" class="user-info">
+            <h3 id="user"></h3>
+        </div>
+        <p class="date-time" id="date-time1"></p>
+    </div>
+
+    <div class="side">
+        <button id="historyButton" onclick="openNav()">&#x203A;</button>
+    </div>
+
+    <div class="container">
+        <div class="robot">
+            <img id="robot-image" src="Robo_off.png" onclick="loadAnotherImage()">
+            <div class="listening-indicator" id="listening-indicator">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="spinner">
+            <div class="spinner1"></div>
+        </div>
+    </div>
+
+    <ol class="chat">
+        <li class="other">
+            <div class="msg">
+                <div class="user"><span class="range admin">Chatbot</span></div>
+                <p>Dude 1st </p>
+            </div>
+        </li>
+        <li class="self">
+            <div class="msg">
+                <div class="user"><span class="range admin">User</span></div>
+                <p>Puff...</p>
+                <p>I'm still doing the Góngora comment...</p>
+                <p>Better other day</p>
+            </div>
+        </li>
+        <li class="other">
+            <div class="msg">
+                <div class="user"><span class="range admin">Chatbot</span></div>
+                <p>Dude 2nd</p>
+            </div>
+        </li>
+        <li class="self">
+            <div class="msg">
+                <div class="user"><span class="range admin">User</span></div>
+                <p>Puff...</p>
+                <p>I'm still doing the Góngora comment...</p>
+                <p>Better other day</p>
+            </div>
+        </li>
+        <li class="other">
+            <div class="msg">
+                <div class="user"><span class="range admin">Chatbot</span></div>
+                <p>Dudem 3rd</p>
+            </div>
+        </li>
+        <li class="self">
+            <div class="msg">
+                <div class="user"><span class="range admin">User</span></div>
+                <p>Puff...</p>
+                <p>I'm still doing the Góngora comment...</p>
+                <p>Better other day</p>
+            </div>
+        </li>
+        <li class="other">
+            <div class="msg">
+                <div class="user"><span class="range admin">Chatbot</span></div>
+                <p>Dude</p>
+            </div>
+        </li>
+        <li class="self">
+            <div class="msg">
+                <div class="user"><span class="range admin">User</span></div>
+                <p>Puff...</p>
+                <p>I'm still doing the Góngora comment...</p>
+                <p>Better other day</p>
+            </div>
+        </li>        
+        <li class="other">
+            <div class="msg">
+                <div class="user"><span class="range admin">Chatbot</span></div>
+                <p>Dude</p>
+            </div>
+        </li>
+        <li class="self">
+            <div class="msg">
+                <div class="user"><span class="range admin">User</span></div>
+                <p>Puff...</p>
+                <p>I'm still doing the Góngora comment...</p>
+                <p>Better other day</p>
+            </div>
+        </li>
+        
+        <li class="other">
+            <div class="msg">
+                <div class="user"><span class="range admin">Chatbot</span></div>
+                <p>Dudeqwertt</p>
+            </div>
+        </li>
+        <li class="self">
+            <div class="msg">
+                <div class="user"><span class="range admin">User</span></div>
+                <p>LAST</p>
+                <p>I'm still doing the Góngora comment...</p>
+                <p>Better other day</p>
+            </div>
+        </li>
+    </ol>
+
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&#x2039;</a>
+        <a href="browsing_history.html">Browsing History</a>
+        <a href="services.html">Services</a>
+        <a href="aboutus.html">Contact</a>
+    
+    </div>
+
+    <script src="main_ui_script.js"></script>
+</body>
+</html>
